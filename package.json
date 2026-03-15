@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,10 +20,11 @@
     "url": "https://github.com/Camisetadecolores/modulo-4-evaluacion-final-Camisetadecolores/issues"
   },
   "homepage": "https://github.com/Camisetadecolores/modulo-4-evaluacion-final-Camisetadecolores#readme",
-    "dependencies": {
+  "dependencies": {
     "cors": "2.8.6",
     "ejs": "5.0.1",
     "express": "5.2.1",
-    "mysql2": "3.19.1"
+    "mysql2": "3.19.1",
+    "nodemon": "^3.1.14"
   }
 }
