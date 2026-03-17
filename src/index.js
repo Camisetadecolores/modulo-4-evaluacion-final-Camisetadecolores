@@ -12,6 +12,9 @@ const { getCart } = require("./controllers/getCart.js");
 const { increaseCartItem } = require("./controllers/increaseCartItem.js");
 const { decreaseCartItem } = require("./controllers/decreaseCartItem.js");
 const { deleteCartItem } = require("./controllers/deleteCartItem.js");
+const { getAdministrator } = require("./controllers/getAdmin.js");
+const { deleteProduct } = require("./controllers/deleteProduct.js");
+const { updateStock } = require("./controllers/updateStock.js");
 
 // EXPRESS APP
 const app = express();
@@ -43,5 +46,8 @@ app.post("/cart/increase/:productId", increaseCartItem);
 app.post("/cart/decrease/:productId", decreaseCartItem);
 app.post("/cart/delete/:productId", deleteCartItem);
 
-
+//ADMIN
+app.get("/admin", getAdministrator);
+app.post("/products/delete/:id", deleteProduct);
+app.post("/products/update-stock/:id", updateStock);
 
