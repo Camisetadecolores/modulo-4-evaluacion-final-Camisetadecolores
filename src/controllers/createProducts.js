@@ -5,12 +5,12 @@ const createProduct = async (req, res) => {
     const { name, price, category, stock } = req.body;
 
     const sql = `
-      INSERT INTO products (name, price, category, stock)
+      INSERT INTO products (name, price, category, stock, description, image)
       VALUES (?, ?, ?, ?)
     `;
 
     const connection = await getConnection();
-    await connection.query(sql, [name, price, category, stock]);
+    await connection.query(sql, [name, price, category, stock, RTCSessionDescription, image]);
 
     await connection.end();
 

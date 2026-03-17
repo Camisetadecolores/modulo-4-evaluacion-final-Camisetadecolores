@@ -10,16 +10,20 @@
     <table border="1">
       <thead>
         <tr>
-          <th>Product</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Subtotal</th>
-          <th>Actions</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <% cart.forEach((item) => { %>
         <tr>
+          <td>
+            <img src="<%= item.image %>" alt="<%= item.name %>" width="80">
+          </td>
           <td><%= item.name %></td>
           <td><%= item.price %> €</td>
           <td><%= item.quantity %></td>

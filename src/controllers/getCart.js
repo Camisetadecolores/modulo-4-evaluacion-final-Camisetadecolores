@@ -8,6 +8,7 @@ const getCart = async (req, res) => {
         cart.product_id,
         products.name,
         products.price,
+        products.image,
         cart.quantity,
         (products.price * cart.quantity) AS subtotal
     FROM cart
