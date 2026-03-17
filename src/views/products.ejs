@@ -8,8 +8,7 @@
     <h1>Available Products</h1>
 
     <nav>
-      <a href="/cart">View cart</a> |
-      <a href="/administrator">Administrator panel</a>
+      <a href="/cart">View cart</a> 
     </nav>
 
     <hr />
@@ -20,6 +19,7 @@
       <% products.forEach((product) => { %>
         <section>
           <h2><%= product.name %></h2>
+          <img src="<%= product.image %>" alt="Product image" />
           <p><strong>Price:</strong> <%= product.price %> €</p>
           <p><strong>Category:</strong> <%= product.category %></p>
           <p><strong>Stock:</strong> <%= product.stock %></p>
