@@ -1,6 +1,7 @@
 // IMPORTS
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const { getConnection } = require("./db/connection.js");
 
 //CONTROLLERS
@@ -14,6 +15,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+//EJS
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 // SERVER
 app.listen(3000, () => console.info("API STARTED"));

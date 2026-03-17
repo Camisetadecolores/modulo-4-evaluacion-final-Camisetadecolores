@@ -16,9 +16,16 @@ const getCart = async (req, res) => {
     const connection = await getConnection();
     const [results] = await connection.query(sql);
 
+    const total = results.reduce((acc, item) => {
+      return acc + Number(item.subtotal);
+    }, 0);
+
     await connection.end();
 
-    res.json(results);
+    res.render("cart", {
+      cart: results,
+      total: total.toFixed(2),
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Database error" });
