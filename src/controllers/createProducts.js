@@ -1,4 +1,4 @@
-const { getConnection } = require("../db/connection.js");
+const { getConnection } = require("../db/connection");
 
 const createProduct = async (req, res) => {
   try {
@@ -10,22 +10,14 @@ const createProduct = async (req, res) => {
     `;
 
     const connection = await getConnection();
-    const [result] = await connection.query(sql, [
-      name,
-      price,
-      category,
-      stock,
-    ]);
+    await connection.query(sql, [name, price, category, stock]);
 
     await connection.end();
 
-    res.json({
-      success: true,
-      id: result.insertId,
-    });
+    res.redirect("/admin");
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Database error" });
+    res.status(500).send("Database error");
   }
 };
 

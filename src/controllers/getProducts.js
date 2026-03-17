@@ -8,7 +8,7 @@ const getProducts = async (req, res) => {
 
     await connection.end();
 
-    res.json(results);
+    res.render("products", { products: results })
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Database error" });

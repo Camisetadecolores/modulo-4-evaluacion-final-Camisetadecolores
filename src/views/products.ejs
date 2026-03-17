@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Products</title>
+  </head>
+  <body>
+    <h1>Available Products</h1>
+
+    <nav>
+      <a href="/cart">View cart</a> |
+      <a href="/administrator">Administrator panel</a>
+    </nav>
+
+    <hr />
+
+    <% if (products.length === 0) { %>
+      <p>No products available.</p>
+    <% } else { %>
+      <% products.forEach((product) => { %>
+        <section>
+          <h2><%= product.name %></h2>
+          <p><strong>Price:</strong> <%= product.price %> €</p>
+          <p><strong>Category:</strong> <%= product.category %></p>
+          <p><strong>Stock:</strong> <%= product.stock %></p>
+
+          <% if (product.stock > 0) { %>
+            <form action="/cart" method="POST">
+              <input type="hidden" name="product_id" value="<%= product.id %>" />
+
+              <label for="quantity-<%= product.id %>">Quantity:</label>
+              <input
+                id="quantity-<%= product.id %>"
+                type="number"
+                name="quantity"
+                min="1"
+                max="<%= product.stock %>"
+                value="1"
+                required
+              />
+
+              <button type="submit">Add to cart</button>
+            </form>
+          <% } else { %>
+            <p><strong>Out of stock</strong></p>
+          <% } %>
+
+          <hr />
+        </section>
+      <% }) %>
+    <% } %>
+  </body>
+</html>
