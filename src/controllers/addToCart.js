@@ -1,26 +1,37 @@
-const { getConnection } = require("../db/connection.js");
+const { getConnection } = require("../db/connection");
 
 const addToCart = async (req, res) => {
   try {
     const { product_id, quantity } = req.body;
 
-    const sql = `
-      INSERT INTO cart (quantity, product_id)
-      VALUES (?, ?)
-    `;
-
     const connection = await getConnection();
-    const [result] = await connection.query(sql, [quantity, product_id]);
+
+    // Check if the product is already in the cart
+    const selectSql = "SELECT * FROM cart WHERE product_id = ?";
+    const [existingProduct] = await connection.query(selectSql, [product_id]);
+
+    if (existingProduct.length > 0) {
+      // If it already exists, update quantity
+      const currentQuantity = existingProduct[0].quantity;
+      const newQuantity = currentQuantity + Number(quantity);
+
+      const updateSql = "UPDATE cart SET quantity = ? WHERE product_id = ?";
+      await connection.query(updateSql, [newQuantity, product_id]);
+    } else {
+      // If it does not exist, insert new row
+      const insertSql = `
+        INSERT INTO cart (quantity, product_id)
+        VALUES (?, ?)
+      `;
+      await connection.query(insertSql, [quantity, product_id]);
+    }
 
     await connection.end();
 
-    res.json({
-      success: true,
-      id: result.insertId,
-    });
+    res.redirect("/cart");
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Database error" });
+    res.status(500).send("Database error");
   }
 };
 

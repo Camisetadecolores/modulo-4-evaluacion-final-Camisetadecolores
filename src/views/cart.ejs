@@ -14,6 +14,7 @@
           <th>Price</th>
           <th>Quantity</th>
           <th>Subtotal</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -23,6 +24,19 @@
           <td><%= item.price %> €</td>
           <td><%= item.quantity %></td>
           <td><%= item.subtotal %> €</td>
+          <td>
+            <form action="/cart/increase/<%= item.product_id %>" method="POST" style="display:inline;">
+              <button type="submit">+</button>
+            </form>
+
+            <form action="/cart/decrease/<%= item.product_id %>" method="POST" style="display:inline;">
+              <button type="submit">-</button>
+            </form>
+
+            <form action="/cart/delete/<%= item.product_id %>" method="POST" style="display:inline;">
+              <button type="submit">Borrar</button>
+            </form>
+          </td>
         </tr>
         <% }) %>
       </tbody>

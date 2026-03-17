@@ -3,14 +3,15 @@ const { getConnection } = require("../db/connection.js");
 const getCart = async (req, res) => {
   try {
     const sql = `
-      SELECT
+    SELECT
         cart.id,
+        cart.product_id,
         products.name,
         products.price,
         cart.quantity,
         (products.price * cart.quantity) AS subtotal
-      FROM cart
-      JOIN products ON cart.product_id = products.id
+    FROM cart
+    JOIN products ON cart.product_id = products.id
     `;
 
     const connection = await getConnection();

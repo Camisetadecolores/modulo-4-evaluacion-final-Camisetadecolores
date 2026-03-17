@@ -9,12 +9,16 @@ const { getProducts } = require("./controllers/getProducts.js");
 const { createProduct } = require("./controllers/createProducts.js");
 const { addToCart } = require("./controllers/addToCart.js");
 const { getCart } = require("./controllers/getCart.js");
+const { increaseCartItem } = require("./controllers/increaseCartItem.js");
+const { decreaseCartItem } = require("./controllers/decreaseCartItem.js");
+const { deleteCartItem } = require("./controllers/deleteCartItem.js");
 
 // EXPRESS APP
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //EJS
 app.set("view engine", "ejs");
@@ -35,6 +39,9 @@ app.post("/products", createProduct);
 // CART
 app.post("/cart", addToCart);
 app.get("/cart", getCart);
+app.post("/cart/increase/:productId", increaseCartItem);
+app.post("/cart/decrease/:productId", decreaseCartItem);
+app.post("/cart/delete/:productId", deleteCartItem);
 
 
 
