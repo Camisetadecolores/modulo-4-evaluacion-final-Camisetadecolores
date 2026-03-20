@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Products</title>
-  </head>
+  <%- include("./head") %>
+
   <body>
-    <h1>Available Products</h1>
+    <%- include("./partials/header") %>
+   
+    <h2 id="shop">Tienda</h2>
 
     <nav>
-      <a href="/cart">View cart</a> 
+      <a href="/cart">ver carrito</a> 
     </nav>
 
     <hr />
@@ -49,5 +49,8 @@
         </section>
       <% }) %>
     <% } %>
+        <%- include("./partials/footer") %>
+        <script src="/js/menuHamburger.js"></script>
+
   </body>
 </html>

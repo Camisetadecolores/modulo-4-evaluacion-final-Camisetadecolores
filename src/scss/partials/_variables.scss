@@ -1,0 +1,28 @@
+:root {
+  /* colores */
+  --color-primary: #403BDD;
+  --color-secondary: #F5B1E9;
+  --color-accent: #A1EFB5;
+  --color-white: #fff8fc;
+  --color-black: #1c1a2a;
+
+    /* degradado */
+  --bg-gradient: linear-gradient(135deg, #ffd3ec 0%, #d9d0ff 50%, #cdefff 100%);
+
+
+  /* tipografías */
+  --font-first: "Erica One", "Arial Black", sans-serif;
+  --font-second: "Borel";
+
+/* size */
+--xs: 0.5rem;
+--s: 0.75rem;
+--m: 1rem;
+--l: 1.5rem;
+--xl: 2rem;
+
+
+
+  /* sombras */
+  --shadow-soft: 0 8px 20px rgba(75, 57, 211, 0.12);
+}

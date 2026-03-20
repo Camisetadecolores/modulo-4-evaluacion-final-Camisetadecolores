@@ -23,6 +23,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(express.static("public"));
+
 
 //EJS
 app.set("view engine", "ejs");
@@ -33,8 +35,8 @@ app.listen(3000, () => console.info("API STARTED"));
 
 // HOME
 app.get("/", function(req, res) {
-    res.send("TIENDA ONLINE")
-})
+  res.render("index");
+});
 
 // PRODUCTS
 app.get("/products", getProducts);
