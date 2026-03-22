@@ -7,6 +7,7 @@ const { getConnection } = require("./db/connection.js");
 //CONTROLLERS
 const { getProducts } = require("./controllers/getProducts.js");
 const { createProduct } = require("./controllers/createProducts.js");
+const { getProductsId } = require("./controllers/getProductsId.js");
 const { addToCart } = require("./controllers/addToCart.js");
 const { getCart } = require("./controllers/getCart.js");
 const { increaseCartItem } = require("./controllers/increaseCartItem.js");
@@ -15,6 +16,8 @@ const { deleteCartItem } = require("./controllers/deleteCartItem.js");
 const { getAdministrator } = require("./controllers/getAdmin.js");
 const { deleteProduct } = require("./controllers/deleteProduct.js");
 const { updateStock } = require("./controllers/updateStock.js");
+const { deleteCart } = require("./controllers/deleteCart.js");
+
 
 // EXPRESS APP
 const app = express();
@@ -24,7 +27,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.static("public"));
-
 
 //EJS
 app.set("view engine", "ejs");
@@ -41,6 +43,7 @@ app.get("/", function(req, res) {
 // PRODUCTS
 app.get("/products", getProducts);
 app.post("/products", createProduct);
+app.get("/products/:id", getProductsId);
 
 // CART
 app.post("/cart", addToCart);
@@ -48,9 +51,10 @@ app.get("/cart", getCart);
 app.post("/cart/increase/:productId", increaseCartItem);
 app.post("/cart/decrease/:productId", decreaseCartItem);
 app.post("/cart/delete/:productId", deleteCartItem);
+app.post("/cart/clear", deleteCart);
+
 
 //ADMIN
 app.get("/admin", getAdministrator);
 app.post("/products/delete/:id", deleteProduct);
 app.post("/products/update-stock/:id", updateStock);
-

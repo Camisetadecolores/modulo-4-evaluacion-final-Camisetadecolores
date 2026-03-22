@@ -2,53 +2,75 @@
 <html lang="en">
   <%- include("./head") %>
 
-  <body className="shop-view">
+  <body class="shop-view">
     <%- include("./partials/header") %>
-   
-    <h2 id="shop">Tienda</h2>
 
-    <nav>
-      <a href="/cart">ver carrito</a> 
-    </nav>
+    <main class="shop">
+      <h2 class="shop__title">Tienda</h2>
 
-    <hr />
+      <nav class="shop__nav">
+        <a href="/cart" class="shop__cart-link">Ver carrito</a>
+      </nav>
 
-    <% if (products.length === 0) { %>
-      <p>No products available.</p>
-    <% } else { %>
-      <% products.forEach((product) => { %>
-        <section>
-          <h2><%= product.name %></h2>
-          <img src="<%= product.image %>" alt="Product image" />
-          <p><strong>Price:</strong> <%= product.price %> €</p>
+      <% if (products.length === 0) { %>
+        <p class="shop__empty">No products available.</p>
+      <% } else { %>
+        <section class="shop-list">
+          <% products.forEach((product, index) => { %>
 
-          <% if (product.stock > 0) { %>
-            <form action="/cart" method="POST">
-              <input type="hidden" name="product_id" value="<%= product.id %>" />
+            <article class="shop-list__product shop-list__product--<%= index % 3 %>">
+              
+              <!-- CARD CLICABLE -->
+              <a href="/products/<%= product.id %>" class="shop-list__link">
+                <h3 class="shop-list__title"><%= product.name %></h3>
 
-              <label for="quantity-<%= product.id %>">cantidad:</label>
-              <input
-                id="quantity-<%= product.id %>"
-                type="number"
-                name="quantity"
-                min="1"
-                max="<%= product.stock %>"
-                value="1"
-                required
-              />
+                <img
+                  class="shop-list__image"
+                  src="<%= product.image %>"
+                  alt="Product image"
+                />
 
-              <button type="submit">Add to cart</button>
-            </form>
-          <% } else { %>
-            <p><strong>Out of stock</strong></p>
-          <% } %>
+                <p class="shop-list__price">
+                  <strong><%= product.price %> €</strong>
+                </p>
+              </a>
 
-          <hr />
+              <!-- ACCIONES -->
+              <% if (product.stock > 0) { %>
+                <form class="shop-list__form" action="/cart" method="POST">
+                  <input type="hidden" name="product_id" value="<%= product.id %>" />
+
+                  <label for="quantity-<%= product.id %>">Cantidad:</label>
+
+                  <input
+                    id="quantity-<%= product.id %>"
+                    class="shop-list__input"
+                    type="number"
+                    name="quantity"
+                    min="1"
+                    max="<%= product.stock %>"
+                    value="1"
+                    required
+                  />
+
+                  <button class="shop-list__button" type="submit">
+                    Añadir al carrito
+                  </button>
+                </form>
+              <% } else { %>
+                <p class="shop-list__out">
+                  <strong>Out of stock</strong>
+                </p>
+              <% } %>
+
+            </article>
+
+          <% }) %>
         </section>
-      <% }) %>
-    <% } %>
-        <%- include("./partials/footer") %>
-        <script src="/js/menuHamburger.js"></script>
+      <% } %>
+    </main>
 
+    <%- include("./partials/footer") %>
+    <script src="/js/menuHamburger.js"></script>
   </body>
 </html>

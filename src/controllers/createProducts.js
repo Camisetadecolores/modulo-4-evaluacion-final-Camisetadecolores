@@ -4,13 +4,24 @@ const createProduct = async (req, res) => {
   try {
     const { name, price, category, stock } = req.body;
 
+    const description = req.body.description || "Sin descripción";
+    const image = "/images/default-product.png";
+
     const sql = `
       INSERT INTO products (name, price, category, stock, description, image)
-      VALUES (?, ?, ?, ?)
+      VALUES (?, ?, ?, ?, ?, ?)
     `;
 
     const connection = await getConnection();
-    await connection.query(sql, [name, price, category, stock, RTCSessionDescription, image]);
+
+    await connection.query(sql, [
+      name,
+      price,
+      category,
+      stock,
+      description,
+      image,
+    ]);
 
     await connection.end();
 

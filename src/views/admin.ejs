@@ -1,95 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("./head") %>
-  <body>
-    <h1>Panel de Administradora</h1>
+  <%- include("./head") %>
 
-    <nav>
-      <a href="/products">Ver Productos</a> 
-    </nav>
+  <body class="admin-view">
+    <%- include("./partials/header") %>
 
-    <hr />
+    <main class="admin">
+      <section class="admin__intro">
+        <h1 class="admin__title">Panel de Administradora</h1>
 
-    <h2>Crear nuevo producto</h2>
+        <nav class="admin__nav">
+          <a class="admin__link" href="/products">Ver productos</a>
+        </nav>
+      </section>
 
-    <form action="/products" method="POST">
-      <div>
-        <label for="name">nombre:</label>
-        <input type="text" id="name" name="name" required />
-      </div>
+      <section class="admin-form">
+        <h2 class="admin-form__title">Crear nuevo producto</h2>
 
-      <div>
-        <label for="price">precio:</label>
-        <input type="number" id="price" name="price" step="0.01" min="0" required />
-      </div>
+        <form class="admin-form__form" action="/products" method="POST">
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="name">Nombre:</label>
+            <input class="admin-form__input" type="text" id="name" name="name" required />
+          </div>
 
-      <div>
-        <label for="category">categoría:</label>
-        <input type="text" id="category" name="category" required />
-      </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="description">Descripción:</label>
+            <textarea
+              class="admin-form__input admin-form__input--textarea"
+              id="description"
+              name="description"
+              rows="4"
+            ></textarea>
+          </div>
 
-      <div>
-        <label for="stock">Stock:</label>
-        <input type="number" id="stock" name="stock" min="0" required />
-      </div>
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="price">Precio:</label>
+            <input
+              class="admin-form__input"
+              type="number"
+              id="price"
+              name="price"
+              step="0.01"
+              min="0"
+              required
+            />
+          </div>
 
-      <button type="submit">Crear</button>
-    </form>
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="category">Categoría:</label>
+            <input class="admin-form__input" type="text" id="category" name="category" required />
+          </div>
 
-    <hr />
+          <div class="admin-form__group">
+            <label class="admin-form__label" for="stock">Stock:</label>
+            <input
+              class="admin-form__input"
+              type="number"
+              id="stock"
+              name="stock"
+              min="0"
+              required
+            />
+          </div>
 
-    <h2>Lista de productos</h2>
+          <button class="admin-form__button" type="submit">Crear producto</button>
+        </form>
+      </section>
 
-    <% if (products.length === 0) { %>
-      <p>No products available yet.</p>
-    <% } else { %>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Precio</th>
-            <th>Categoria</th>
-            <th>Stock</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
+      <section class="admin-products">
+        <h2 class="admin-products__title">Lista de productos</h2>
 
-        <tbody>
-          <% products.forEach((product) => { %>
-            <tr>
-              <td><%= product.id %></td>
-              <td>
-                <img src="<%= product.image %>" alt="<%= product.name %>" width="80">
-              </td>
-              <td><%= product.name %></td>
-              <td><%= product.description %></td>
-              <td><%= product.price %> €</td>
-              <td><%= product.category %></td>
-              <td><%= product.stock %></td>
-            <td>
-            <form action="/products/update-stock/<%= product.id %>" method="POST" style="display:inline;">
-                <input 
-                type="number" 
-                name="stock" 
-                min="0" 
-                value="<%= product.stock %>" 
-                style="width: 60px;"
-                required
-                />
-                <button type="submit">Update stock</button>
-            </form>
+        <% if (products.length === 0) { %>
+          <p class="admin-products__empty">No products available yet.</p>
+        <% } else { %>
+          <div class="admin-products__table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Imagen</th>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                  <th>Precio</th>
+                  <th>Categoría</th>
+                  <th>Stock</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
 
-            <form action="/products/delete/<%= product.id %>" method="POST" style="display:inline;">
-                <button type="submit">Delete</button>
-            </form>
-            </td>
-                        </tr>
-          <% }) %>
-        </tbody>
-      </table>
-    <% } %>
+              <tbody>
+                <% products.forEach((product) => { %>
+                  <tr>
+                    <td><%= product.id %></td>
+
+                    <td>
+                      <img
+                        class="admin-table__image"
+                        src="<%= product.image %>"
+                        alt="<%= product.name %>"
+                      />
+                    </td>
+
+                    <td><%= product.name %></td>
+                    <td><%= product.description %></td>
+                    <td><%= product.price %> €</td>
+                    <td><%= product.category %></td>
+                    <td><%= product.stock %></td>
+
+                    <td>
+                      <div class="admin-table__actions">
+                        <form
+                          class="admin-table__stock-form"
+                          action="/products/update-stock/<%= product.id %>"
+                          method="POST"
+                        >
+                          <input
+                            class="admin-table__stock-input"
+                            type="number"
+                            name="stock"
+                            min="0"
+                            value="<%= product.stock %>"
+                            required
+                          />
+                          <button
+                            class="admin-table__button admin-table__button--update"
+                            type="submit"
+                          >
+                            Actualizar stock
+                          </button>
+                        </form>
+
+                        <form
+                          action="/products/delete/<%= product.id %>"
+                          method="POST"
+                        >
+                          <button
+                            class="admin-table__button admin-table__button--delete"
+                            type="submit"
+                          >
+                            Borrar
+                          </button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } %>
+      </section>
+    </main>
+
+    <%- include("./partials/footer") %>
+    <script src="/js/menuHamburger.js"></script>
   </body>
 </html>

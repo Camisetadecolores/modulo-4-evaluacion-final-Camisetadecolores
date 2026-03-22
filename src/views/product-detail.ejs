@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./head") %>
+
+  <body class="product-detail-view">
+    <%- include("./partials/header") %>
+
+    <main class="product-detail">
+      <a class="product-detail__back" href="/products">← Volver a la tienda</a>
+
+      <section class="product-detail__card">
+        <div class="product-detail__image-wrapper">
+          <img
+            class="product-detail__image"
+            src="<%= product.image %>"
+            alt="<%= product.name %>"
+          />
+        </div>
+
+        <div class="product-detail__info">
+          <h1 class="product-detail__title"><%= product.name %></h1>
+
+          <% if (product.category) { %>
+            <p class="product-detail__category">
+              <strong>Categoría:</strong> <%= product.category %>
+            </p>
+          <% } %>
+
+          <p class="product-detail__price">
+            <strong>Precio:</strong> <%= product.price %> €
+          </p>
+
+          <% if (product.description) { %>
+            <div class="product-detail__description">
+              <h2 class="product-detail__subtitle">Descripción</h2>
+              <p><%= product.description %></p>
+            </div>
+          <% } %>
+
+          <% if (product.stock > 0) { %>
+            <p class="product-detail__stock">
+              <strong>Stock disponible:</strong> <%= product.stock %>
+            </p>
+
+            <form class="product-detail__form" action="/cart" method="POST">
+              <input type="hidden" name="product_id" value="<%= product.id %>" />
+
+              <label
+                class="product-detail__label"
+                for="quantity-<%= product.id %>"
+              >
+                Cantidad:
+              </label>
+
+              <input
+                id="quantity-<%= product.id %>"
+                class="product-detail__input"
+                type="number"
+                name="quantity"
+                min="1"
+                max="<%= product.stock %>"
+                value="1"
+                required
+              />
+
+              <button class="product-detail__button" type="submit">
+                Añadir al carrito
+              </button>
+            </form>
+          <% } else { %>
+            <p class="product-detail__out-of-stock">
+              <strong>Producto agotado</strong>
+            </p>
+          <% } %>
+        </div>
+      </section>
+    </main>
+
+    <%- include("./partials/footer") %>
+    <script src="/js/menuHamburger.js"></script>
+  </body>
+</html>

@@ -1,49 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-<%- include("./head") %>
-  <body>
-    <h1>Carrito de compra</h1>
+  <%- include("./head") %>
 
-    <table border="1">
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% cart.forEach((item) => { %>
-        <tr>
-          <td>
-            <img src="<%= item.image %>" alt="<%= item.name %>" width="80">
-          </td>
-          <td><%= item.name %></td>
-          <td><%= item.price %> €</td>
-          <td><%= item.quantity %></td>
-          <td><%= item.subtotal %> €</td>
-          <td>
-            <form action="/cart/increase/<%= item.product_id %>" method="POST" style="display:inline;">
-              <button type="submit">+</button>
+  <body class="cart-view">
+    <%- include("./partials/header") %>
+
+    <main class="cart">
+      <h1 class="cart__title">Carrito de compra</h1>
+
+      <% if (cart.length === 0) { %>
+        <p class="cart__empty">Tu carrito está vacío.</p>
+      <% } else { %>
+        <section class="cart-list">
+          <% cart.forEach((item, index) => { %>
+            <article class="cart-card cart-card--<%= index % 3 %>">
+              <div class="cart-card__image-wrapper">
+                <img
+                  class="cart-card__image"
+                  src="<%= item.image %>"
+                  alt="<%= item.name %>"
+                />
+              </div>
+
+              <div class="cart-card__content">
+                <h2 class="cart-card__title"><%= item.name %></h2>
+
+                <p class="cart-card__text">
+                  <strong>Precio:</strong> <%= item.price %> €
+                </p>
+
+                <p class="cart-card__text">
+                  <strong>Cantidad:</strong> <%= item.quantity %>
+                </p>
+
+                <p class="cart-card__text">
+                  <strong>Subtotal:</strong> <%= item.subtotal %> €
+                </p>
+
+                <div class="cart-card__actions">
+                  <form action="/cart/increase/<%= item.product_id %>" method="POST">
+                    <button class="cart-card__button cart-card__button--plus" type="submit">+</button>
+                  </form>
+
+                  <form action="/cart/decrease/<%= item.product_id %>" method="POST">
+                    <button class="cart-card__button cart-card__button--minus" type="submit">-</button>
+                  </form>
+
+                  <form action="/cart/delete/<%= item.product_id %>" method="POST">
+                    <button class="cart-card__button cart-card__button--delete" type="submit">
+                      Borrar
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </article>
+          <% }) %>
+        </section>
+
+        <section class="cart-summary">
+          <h2 class="cart-summary__total">Total: <%= total %> €</h2>
+          <a class="cart-summary__link" href="/products">Seguir comprando</a>
+
+        <div class="cart-summary__actions">
+            <form action="/cart/clear" method="POST">
+              <button class="cart-summary__button cart-summary__button--clear" type="submit">
+                Vaciar carrito
+              </button>
             </form>
 
-            <form action="/cart/decrease/<%= item.product_id %>" method="POST" style="display:inline;">
-              <button type="submit">-</button>
-            </form>
+            <button class="cart-summary__button cart-summary__button--checkout">
+              Tramitar pedido
+            </button>
+          </div>
+        </section>
+      <% } %>
+    </main>
 
-            <form action="/cart/delete/<%= item.product_id %>" method="POST" style="display:inline;">
-              <button type="submit">Borrar</button>
-            </form>
-          </td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
-
-    <h2>Total: <%= total %> €</h2>
+    <%- include("./partials/footer") %>
+    <script src="/js/menuHamburger.js"></script>
   </body>
 </html>
