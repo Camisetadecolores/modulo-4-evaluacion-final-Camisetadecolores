@@ -13,7 +13,8 @@ This project simulates a complete online store with:
 
 *** All wrapped in a creative concept with a custom visual style***
 
-* Tech Stack
+TECH STACK
+
 - Node.js
 - Express
 - MySQL
