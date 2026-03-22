@@ -340,15 +340,13 @@ h1, h2 {
     padding: 0;
   }
   .footer__img {
-    width: calc(100% + 4rem);
-    margin-left: -2rem;
+    width: 100%;
   }
   .footer__content {
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 2rem;
     padding: 2rem;
   }
   .footer__text {
@@ -363,6 +361,14 @@ h1, h2 {
   font-size: 2rem;
   color: var(--color-primary);
   margin-bottom: 1.5rem;
+}
+
+.shop-view {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 3rem;
+  padding-bottom: 1rem;
 }
 
 /*# sourceMappingURL=main.css.map */

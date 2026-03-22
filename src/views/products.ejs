@@ -2,7 +2,7 @@
 <html lang="en">
   <%- include("./head") %>
 
-  <body>
+  <body className="shop-view">
     <%- include("./partials/header") %>
    
     <h2 id="shop">Tienda</h2>
@@ -21,14 +21,12 @@
           <h2><%= product.name %></h2>
           <img src="<%= product.image %>" alt="Product image" />
           <p><strong>Price:</strong> <%= product.price %> €</p>
-          <p><strong>Category:</strong> <%= product.category %></p>
-          <p><strong>Stock:</strong> <%= product.stock %></p>
 
           <% if (product.stock > 0) { %>
             <form action="/cart" method="POST">
               <input type="hidden" name="product_id" value="<%= product.id %>" />
 
-              <label for="quantity-<%= product.id %>">Quantity:</label>
+              <label for="quantity-<%= product.id %>">cantidad:</label>
               <input
                 id="quantity-<%= product.id %>"
                 type="number"
