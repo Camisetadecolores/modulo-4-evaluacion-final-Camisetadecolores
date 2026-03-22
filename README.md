@@ -18,7 +18,7 @@ This project simulates a complete online store with:
 - EJS
 - SCSS (BEM + mobile first)
 
-* Features
+* FEATURES
 
 ** Shop
 - Product listing
@@ -61,21 +61,45 @@ src/
 │   ├── images/
 │   ├── js/
 │   └── styles/
+├── database/
+│   └── init.sql
 └── index.js 
-
 
 * Database
 This project uses MySQL.
+
 Example products table:
-        CREATE TABLE products (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255),
-        description TEXT NOT NULL,
-        price DECIMAL(10,2),
-        category VARCHAR(100),
-        stock INT,
-        image VARCHAR(255)
-        );
+
+CREATE TABLE products (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255),
+  description TEXT NOT NULL,
+  price DECIMAL(10,2),
+  category VARCHAR(100),
+  stock INT,
+  image VARCHAR(255)
+);
+
+This project includes a pre-filled database with sample products.
+
+To load the data:
+
+1. Create your database:
+CREATE DATABASE my_shop;
+
+2. Import the file located at:
+/database/init.sql
+
+You can do it in two ways:
+
+Option A – MySQL Workbench
+- Open MySQL Workbench
+- Select your database
+- Open init.sql
+- Run the script
+
+Option B – Terminal
+mysql -u your_user -p my_shop < database/init.sql
 
 * Environment variables
 Create a .env file in the root:
@@ -83,44 +107,51 @@ Create a .env file in the root:
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=your_password
-DB_NAME=database_name
+DB_NAME=my_shop
+
+⚠️ This file is ignored in .gitignore.
 
 * Run the project
-1. Clone the repository
-git clone https://github.com/your-username/your-repo.git
-2. Install dependencies
-npm install
-3. Start the server
-npm run dev
-4. Open in your browser:
-http://localhost:3000
+1. Clone the repository  
+git clone https://github.com/your-username/your-repo.git  
+
+2. Install dependencies  
+npm install  
+
+3. Start the server  
+npm run dev  
+
+4. Open in your browser:  
+http://localhost:3000  
 
 * Images
-- Images are not uploaded through the form.
-They are stored as paths in the database:
-/images/product.png
+    - Images are not uploaded through the form.  
+    They are stored as paths in the database:  
+    /images/product.png  
 
-- And served from:
-public/images/
+    - And served from:  
+    public/images/  
+
+⚠️ Make sure all images referenced in the database exist in:  
+/public/images  
 
 * Technical decisions
-- Server-side rendering with EJS
-- Styling with SCSS + BEM methodology
-- Controller-based architecture
-- Clear separation between views, logic, and data
-- Use of query parameters for filtering and sorting
-
+- Server-side rendering with EJS  
+- Styling with SCSS + BEM methodology  
+- Controller-based architecture  
+- Clear separation between views, logic, and data  
+- Use of query parameters for filtering and sorting  
 
 * Future improvements
-- Image upload from admin panel
-- Authentication system
-- User-based cart persistence
-- Animations and microinteractions
-- Production deployment
+- Image upload from admin panel  
+- Authentication system  
+- User-based cart persistence  
+- Animations and microinteractions  
+- Production deployment  
 
 * Author
-    Project developed by:
-    Cristina Rodríguez Nogueiras
-    @camisetadecolores
+Project developed by:  
+Cristina Rodríguez Nogueiras  
+@camisetadecolores  
 
-✨✨✨This is NOT a shop… but almost ✨✨✨
+✨✨✨ This is NOT a shop… but almost ✨✨✨
