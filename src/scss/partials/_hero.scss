@@ -1,9 +1,10 @@
 .hero {
-  background-image: url(/images/background-hero.png);
+  background-image: url(/images/background.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100dvh;
+  padding-top: 2rem;
 
   display: flex;
   flex-direction: column;

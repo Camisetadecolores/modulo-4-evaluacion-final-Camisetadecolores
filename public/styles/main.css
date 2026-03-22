@@ -70,9 +70,7 @@ p {
   margin: 0;
 }
 
-/* =========================
-   UTILIDADES
-========================= */
+/* UTIL */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -197,11 +195,12 @@ h1, h2 {
 }
 
 .hero {
-  background-image: url(/images/background-hero.png);
+  background-image: url(/images/background.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100dvh;
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -271,6 +270,7 @@ h1, h2 {
   display: flex;
   flex-direction: column;
   padding: 0;
+  margin-bottom: 0;
   background-color: transparent;
   color: var(--color-secondary);
   text-align: center;
@@ -368,6 +368,7 @@ h1, h2 {
   flex-direction: column;
   padding-top: 7rem;
   padding-bottom: 1rem;
+  min-height: 100dvh;
 }
 
 .shop {
@@ -375,11 +376,13 @@ h1, h2 {
   flex-direction: column;
   gap: 1rem;
   padding: 0 1rem;
+  min-height: 100dvh;
 }
 .shop__title {
   margin: 0;
+  margin-bottom: 1rem;
   font-family: var(--font-first);
-  font-size: 2rem;
+  font-size: 4rem;
   color: var(--color-primary);
   text-align: center;
 }
@@ -477,15 +480,15 @@ h1, h2 {
   padding: 0.5rem;
   border: 0.1rem solid var(--color-primary);
   border-radius: 0.8rem;
-  font-family: var(--font-second);
+  font-family: var(--font-first);
   text-align: center;
 }
 .shop-list__button {
   padding: 0.7rem 1rem;
   border: none;
   border-radius: 999rem;
-  background-color: var(--color-primary);
-  color: var(--color-white);
+  background-color: var(--color-accent);
+  color: var(--color-primary);
   font-family: var(--font-first);
   font-size: 0.95rem;
   cursor: pointer;
@@ -500,6 +503,47 @@ h1, h2 {
   color: var(--color-secondary);
 }
 
+.shop-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.shop-filters__group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.shop-filters__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1rem;
+  border: 0.12rem solid var(--color-primary);
+  border-radius: 999rem;
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  font-family: var(--font-first);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.shop-filters__button:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.shop-filters__button.is-active {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  border-color: var(--color-secondary);
+}
+
+@media (min-width: 48rem) {
+  .shop-filters {
+    align-items: center;
+  }
+}
 @media (min-width: 48rem) {
   .shop {
     padding: 0 2rem;
@@ -537,6 +581,8 @@ h1, h2 {
 .product-detail__card {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1.5rem;
   padding: 1.5rem;
   background-color: var(--color-white);
@@ -640,6 +686,7 @@ h1, h2 {
   flex-direction: column;
   padding-top: 7rem;
   padding-bottom: 1rem;
+  height: 100dvh;
 }
 
 .cart {
@@ -647,6 +694,7 @@ h1, h2 {
   flex-direction: column;
   gap: 1.5rem;
   padding: 0 1rem 2rem;
+  height: 100dvh;
 }
 .cart__title {
   margin: 0;
@@ -868,13 +916,14 @@ h1, h2 {
   flex-direction: column;
   padding-top: 7rem;
   padding-bottom: 1rem;
+  min-height: 100dvh;
 }
 
 .admin {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 0 1rem 2rem;
+  padding: 1rem;
 }
 .admin__intro {
   display: flex;
@@ -1101,6 +1150,127 @@ h1, h2 {
     width: 100%;
     margin: 0 auto;
   }
+}
+.previous {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 3rem;
+  background-color: var(--color-white);
+}
+.previous__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  min-height: 10rem;
+  padding: 1.5rem;
+  border: 0.3rem solid var(--color-primary);
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.previous__card--intro {
+  border-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
+}
+.previous__card--shop {
+  border-color: var(--color-secondary);
+  background-image: url(/images/background-pink.png);
+}
+.previous__card--shop:hover {
+  transform: translateY(-0.15rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+}
+.previous__card--cart {
+  border-color: var(--color-accent);
+  background-image: url(/images/background.png);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.previous__card--cart:hover {
+  transform: translateY(-0.15rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+}
+.previous__card--admin {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+}
+.previous__card--admin:hover {
+  transform: translateY(-0.15rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+}
+.previous__title {
+  margin: 0;
+  font-family: var(--font-first);
+  font-size: 1.6rem;
+  line-height: 1.1;
+  color: var(--color-primary);
+  text-align: center;
+  align-self: center;
+}
+.previous__text {
+  margin: 0;
+  font-family: var(--font-second);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-primary);
+  text-align: center;
+}
+.previous img {
+  display: block;
+  width: 100%;
+  max-width: 10rem;
+  height: auto;
+  align-self: center;
+}
+
+@media (min-width: 48rem) {
+  .previous {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 5rem;
+  }
+  .previous__card {
+    min-height: 14rem;
+  }
+  .previous__card--intro {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .previous__title {
+    font-size: 1.8rem;
+  }
+  .previous__text, .previous__text2 {
+    font-size: 1.05rem;
+  }
+}
+.previous__title--2 {
+  color: var(--color-primary);
+  font-size: 4rem;
+  align-self: center;
+  margin-top: 0;
+}
+
+.previous__title--3 {
+  color: var(--color-primary);
+  font-size: 4rem;
+  align-self: center;
+  margin-bottom: 0;
+}
+
+.previous__title--4 {
+  color: var(--color-accent);
+  font-size: 4rem;
+  align-self: center;
 }
 
 /*# sourceMappingURL=main.css.map */

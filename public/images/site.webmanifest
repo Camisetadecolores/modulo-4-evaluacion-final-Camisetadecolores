@@ -1,0 +1,21 @@
+{
+  "name": "Esto NO es una tienda",
+  "short_name": "NO tienda",
+  "icons": [
+    {
+      "src": "/images/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#ffd2ff",
+  "background_color": "#ffd2ff",
+  "display": "standalone"
+}

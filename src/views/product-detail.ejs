@@ -20,22 +20,18 @@
         <div class="product-detail__info">
           <h1 class="product-detail__title"><%= product.name %></h1>
 
-          <% if (product.category) { %>
-            <p class="product-detail__category">
-              <strong>Categoría:</strong> <%= product.category %>
-            </p>
+          <% if (product.description) { %>
+            <div class="product-detail__description">
+              <p><%= product.description %></p>
+            </div>
           <% } %>
+
 
           <p class="product-detail__price">
             <strong>Precio:</strong> <%= product.price %> €
           </p>
 
-          <% if (product.description) { %>
-            <div class="product-detail__description">
-              <h2 class="product-detail__subtitle">Descripción</h2>
-              <p><%= product.description %></p>
-            </div>
-          <% } %>
+
 
           <% if (product.stock > 0) { %>
             <p class="product-detail__stock">
