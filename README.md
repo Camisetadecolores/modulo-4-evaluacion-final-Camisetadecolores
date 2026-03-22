@@ -1,8 +1,10 @@
 *** This is NOT a shop ***
+
 Fullstack project built with Node.js, Express, MySQL and EJS.
 A not-so-conventional shop where products are not exactly what they seem… 
 
-* Description
+DESCRIPTION
+
 This project simulates a complete online store with:
 - Product catalog
 - Individual product detail page
@@ -18,7 +20,7 @@ This project simulates a complete online store with:
 - EJS
 - SCSS (BEM + mobile first)
 
-* FEATURES
+FEATURES
 
 ** Shop
 - Product listing
@@ -46,7 +48,8 @@ This project simulates a complete online store with:
 - Delete products
 - Full product overview
 
-* Project structure
+PROJECT STRUCTURE
+
 src/
 ├── controllers/
 ├── db/
@@ -65,7 +68,8 @@ src/
 │   └── init.sql
 └── index.js 
 
-* Database
+DATABASE
+
 This project uses MySQL.
 
 Example products table:
@@ -101,7 +105,8 @@ Option A – MySQL Workbench
 Option B – Terminal
 mysql -u your_user -p my_shop < database/init.sql
 
-* Environment variables
+ENVIROMENT VARIABLES
+
 Create a .env file in the root:
 
 DB_HOST=localhost
@@ -111,7 +116,8 @@ DB_NAME=my_shop
 
 ⚠️ This file is ignored in .gitignore.
 
-* Run the project
+RUN THE PROJECT
+
 1. Clone the repository  
 git clone https://github.com/your-username/your-repo.git  
 
@@ -124,7 +130,8 @@ npm run dev
 4. Open in your browser:  
 http://localhost:3000  
 
-* Images
+IMAGES 
+
     - Images are not uploaded through the form.  
     They are stored as paths in the database:  
     /images/product.png  
@@ -135,21 +142,24 @@ http://localhost:3000
 ⚠️ Make sure all images referenced in the database exist in:  
 /public/images  
 
-* Technical decisions
+TECHNICAL DECISIONS
+
 - Server-side rendering with EJS  
 - Styling with SCSS + BEM methodology  
 - Controller-based architecture  
 - Clear separation between views, logic, and data  
 - Use of query parameters for filtering and sorting  
 
-* Future improvements
+FUTURE IMPROVEMENTS
+
 - Image upload from admin panel  
 - Authentication system  
 - User-based cart persistence  
 - Animations and microinteractions  
 - Production deployment  
 
-* Author
+AUTHOR
+
 Project developed by:  
 Cristina Rodríguez Nogueiras  
 @camisetadecolores  
