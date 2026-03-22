@@ -8,9 +8,67 @@
     <main class="shop">
       <h2 class="shop__title">Tienda</h2>
 
-      <nav class="shop__nav">
-        <a href="/cart" class="shop__cart-link">Ver carrito</a>
-      </nav>
+    <nav class="shop-filters">
+      <div class="shop-filters__group">
+        <a
+          href="/products"
+          class="shop-filters__button <%= currentCategory === 'all' ? 'is-active' : '' %>"
+        >
+          Todos
+        </a>
+
+        <a
+          href="/products?category=bienestar<%= currentSort ? '&sort=' + currentSort : '' %>"
+          class="shop-filters__button <%= currentCategory === 'bienestar' ? 'is-active' : '' %>"
+        >
+          Bienestar
+        </a>
+
+        <a
+          href="/products?category=tecnología<%= currentSort ? '&sort=' + currentSort : '' %>"
+          class="shop-filters__button <%= currentCategory === 'tecnología' ? 'is-active' : '' %>"
+        >
+          Tecnología
+        </a>
+
+        <a
+          href="/products?category=gadgets<%= currentSort ? '&sort=' + currentSort : '' %>"
+          class="shop-filters__button <%= currentCategory === 'gadgets' ? 'is-active' : '' %>"
+        >
+          Gadgets
+        </a>
+      </div>
+
+      <div class="shop-filters__group">
+        <a
+          href="/products?<%= currentCategory !== 'all' ? 'category=' + currentCategory + '&' : '' %>sort=price-asc"
+          class="shop-filters__button <%= currentSort === 'price-asc' ? 'is-active' : '' %>"
+        >
+          Precio ↑
+        </a>
+
+        <a
+          href="/products?<%= currentCategory !== 'all' ? 'category=' + currentCategory + '&' : '' %>sort=price-desc"
+          class="shop-filters__button <%= currentSort === 'price-desc' ? 'is-active' : '' %>"
+        >
+          Precio ↓
+        </a>
+
+        <a
+          href="/products?<%= currentCategory !== 'all' ? 'category=' + currentCategory + '&' : '' %>sort=name-asc"
+          class="shop-filters__button <%= currentSort === 'name-asc' ? 'is-active' : '' %>"
+        >
+          A-Z
+        </a>
+
+        <a
+          href="/products?<%= currentCategory !== 'all' ? 'category=' + currentCategory + '&' : '' %>sort=name-desc"
+          class="shop-filters__button <%= currentSort === 'name-desc' ? 'is-active' : '' %>"
+        >
+          Z-A
+        </a>
+      </div>
+    </nav>
 
       <% if (products.length === 0) { %>
         <p class="shop__empty">No products available.</p>

@@ -1,27 +1,39 @@
-const { getConnection } = require("../db/connection.js");
+const { getConnection } = require("../db/connection");
 
 const getProducts = async (req, res) => {
   try {
-    const connection = await getConnection();
-
-    const category = req.query.category;
+    const { category, sort } = req.query;
 
     let sql = "SELECT * FROM products";
-    let values = [];
+    const params = [];
 
     if (category) {
       sql += " WHERE category = ?";
-      values.push(category);
+      params.push(category);
     }
 
-    const [results] = await connection.query(sql, values);
+    if (sort === "price-asc") {
+      sql += " ORDER BY price ASC";
+    } else if (sort === "price-desc") {
+      sql += " ORDER BY price DESC";
+    } else if (sort === "name-asc") {
+      sql += " ORDER BY name ASC";
+    } else if (sort === "name-desc") {
+      sql += " ORDER BY name DESC";
+    }
 
+    const connection = await getConnection();
+    const [products] = await connection.query(sql, params);
     await connection.end();
 
-    res.render("products", { products: results });
+    res.render("products", {
+      products,
+      currentCategory: category || "all",
+      currentSort: sort || "",
+    });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Database error" });
+    res.status(500).send("Database error");
   }
 };
 
